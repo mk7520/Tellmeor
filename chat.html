@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>واجهة دردشة</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    .stories {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      background-color: #fff;
+    }
+
+    .story-circle {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #ff007f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: black;
+    }
+
+    .search-bar {
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .chat-list {
+      padding: 10px;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .chat-story {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #ff007f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0px;
+      font-size: 20px;
+    }
+
+    .chat-bar {
+      height: 12px;
+      background-color: #ff007f;
+      border-radius: 10px;
+    }
+
+    .chat-bar.short { width: 30%; }
+    .chat-bar.medium { width: 50%; }
+    .chat-bar.long { width: 80%; }
+
+    
+
+    .bottom-nav img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .logo {
+      background-color: #ff007f;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 10px;
+    }
+    .bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background: #ff7789;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="stories">
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+    <div class="story-circle">Story</div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="🔍 ابحث عن الأشخاص...">
+  </div>
+
+  <div class="chat-list">
+      <a href="">
+    <div class="chat-item">
+      <div class="chat-story"><img src="p.png" alt="" width="50px"></div>
+      <div class="chat-bar short"></div>
+    </div></a>
+    <a href="">
+    <div class="chat-item">
+      <div class="chat-story">Story</div>
+      <div class="chat-bar long"></div>
+    </div></a>
+    <a href="">
+    <div class="chat-item">
+      <div class="chat-story">Story</div>
+      <div class="chat-bar short"></div>
+    </div></a>
+    <a href="#">
+    <div class="chat-item">
+      <div class="chat-story">Story</div>
+      <div class="chat-bar long"></div>
+    </div></a>
+    <a href="">
+    <div class="chat-item">
+      <div class="chat-story">Story</div>
+      <div class="chat-bar medium"></div>
+    </div></a>
+    <div class="chat-item">
+      <div class="chat-story">Story</div>
+      <div class="chat-bar long"></div>
+    </div>
+  </div>
+
+  
+<footer class="bottom-nav">
+    <div>
+          <a href="chat.html">
+                <img src="./a/img/chat.png" alt="" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="./call.html">
+                <img src="a/img/call.png" alt="" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="videos.html">
+                <img src="./a/img/video.png" alt="Videos" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="contacts.html">
+                <img src="./a/img/contact.png" alt="Contacts" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="groups.html">
+                <img src="./a/img/group.png" alt="Groups" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="channels.html">
+                <img src="./a/img/channel.png" alt="Channels" width="50px">
+          </a>
+    </div>
+    <div>
+          <a href="settings.html">
+                <img src="./a/img/tsettings.png" alt="T Settings" width="500px">
+          </a>
+    </div>
+  </footer>
+</body>
+</html>

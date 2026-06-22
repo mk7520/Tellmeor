@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>محرك تشغيل Xapp مطور</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    margin: 20px;
+    background-color: #f0f0f0;
+  }
+  #app {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .text-box, .box-text {
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 100%;
+    word-break: break-word;
+  }
+  .image-box, .box-img, video, .box-video {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  .button {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    background-color: #0b79d0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="search"], input[type="color"] {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+  }
+  a.link-url {
+    display: inline-block;
+    margin: 10px auto;
+    color: #0066cc;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  nav {
+    text-align: center;
+    margin: 20px 0;
+  }
+  nav button {
+    margin: 0 10px;
+    background-color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center">محرك تشغيل Xapp مطور</h2>
+<div id="app"></div>
+
+<nav>
+  <button id="prevPageBtn">الصفحة السابقة</button>
+  <button id="nextPageBtn">الصفحة التالية</button>
+</nav>
+
+<script>
+// بيانات Xapp مع صفحات متعددة وأحداث
+const xappData = {
+  app: {
+    design: {
+      page1: [
+        { text: { value: "مرحباً بك في الصفحة 1", color: "white", backgroundColor: "#2196F3", fontSize: "22px", place: "center" } },
+        { img: { src: "https://via.placeholder.com/400x150.png?text=Page+1+Image", width: "80%" } },
+        { button: { text: "زر الصفحة 1", color: "white", backgroundColor: "#4caf50", width: "150px", onClick: () => alert("تم الضغط على زر الصفحة 1") } },
+      ],
+      page2: [
+        { text: { value: "أنت في الصفحة 2 الآن", color: "#333", backgroundColor: "#ffc107", fontSize: "20px", place: "right" } },
+        { video: { src: "https://www.w3schools.com/html/mov_bbb.mp4", width: "80%", controls: true } },
+        { input: { type: "text", placeholder: "اكتب هنا...", width: "80%", onChange: (e) => console.log("نص الإدخال:", e.target.value) } },
+        { button: { text: "زر الصفحة 2", color: "white", backgroundColor: "#f44336", width: "150px", onClick: () => alert("تم الضغط على زر الصفحة 2") } },
+      ],
+      page3: [
+        { url: { href: "https://www.example.com", text: "اذهب إلى example.com", openInNewTab: true } },
+        { box: { type: "text", text: "صندوق نصي في الصفحة 3", backgroundColor: "#4caf50", color: "#fff", padding: "20px", borderRadius: "10px" } },
+        { box: { type: "img", src: "https://via.placeholder.com/300x100.png?text=Box+Image+Page+3", width: "60%" } },
+        { button: { text: "زر الصفحة 3", color: "white", backgroundColor: "#2196f3", width: "150px", onClick: () => alert("زر الصفحة 3 تم الضغط عليه") } },
+      ]
+    }
+  }
+};
+
+// عناصر HTML الرئيسية
+const appDiv = document.getElementById("app");
+const prevBtn = document.getElementById("prevPageBtn");
+const nextBtn = document.getElementById("nextPageBtn");
+
+// صفحات متوفرة وعددها
+const pages = Object.keys(xappData.app.design);
+let currentPageIndex = 0;
+
+// دوال رندر للعناصر (مطورة لتدعم خصائص أوسع)
+
+function applyCommonStyles(el, props) {
+  if(!props) return;
+  if(props.width) el.style.width = typeof props.width === 'number' ? props.width + 'px' : props.width;
+  if(props.height) el.style.height = typeof props.height === 'number' ? props.height + 'px' : props.height;
+  if(props.backgroundColor) el.style.backgroundColor = props.backgroundColor;
+  if(props.color) el.style.color = props.color;
+  if(props.fontSize) el.style.fontSize = typeof props.fontSize === 'number' ? props.fontSize + 'px' : props.fontSize;
+  if(props.padding) el.style.padding = props.padding;
+  if(props.borderRadius) el.style.borderRadius = props.borderRadius;
+  if(props.textAlign || props.place) el.style.textAlign = props.textAlign || props.place;
+  if(props.margin) el.style.margin = props.margin;
+  if(props.cursor) el.style.cursor = props.cursor;
+  if(props.display) el.style.display = props.display;
+}
+
+function renderText(obj) {
+  const div = document.createElement("div");
+  div.className = "text-box";
+  div.textContent = obj.value || "";
+  applyCommonStyles(div, obj);
+  return div;
+}
+
+function renderImage(obj) {
+  const img = document.createElement("img");
+  img.className = "image-box";
+  img.src = obj.src || "";
+  applyCommonStyles(img, obj);
+  return img;
+}
+
+function renderVideo(obj) {
+  const video = document.createElement("video");
+  video.src = obj.src || "";
+  video.controls = obj.controls !== undefined ? obj.controls : true;
+  applyCommonStyles(video, obj);
+  return video;
+}
+
+function renderButton(obj) {
+  const btn = document.createElement("button");
+  btn.className = "button";
+  btn.textContent = obj.text || "زر";
+  applyCommonStyles(btn, obj);
+  if (obj.onClick && typeof obj.onClick === "function") {
+    btn.onclick = obj.onClick;
+  }
+  return btn;
+}
+
+function renderInput(obj) {
+  const input = document.createElement("input");
+  input.type = obj.type || "text";
+  input.placeholder = obj.placeholder || "";
+  applyCommonStyles(input, obj);
+  if (obj.onChange && typeof obj.onChange === "function") {
+    input.oninput = obj.onChange;
+  }
+  return input;
+}
+
+function renderUrl(obj) {
+  const a = document.createElement("a");
+  a.href = obj.href || "#";
+  a.textContent = obj.text || obj.href || "رابط";
+  a.className = "link-url";
+  if (obj.openInNewTab) {
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+  }
+  applyCommonStyles(a, obj);
+  return a;
+}
+
+function renderBox(obj) {
+  if (!obj.type) return document.createTextNode("");
+  if (obj.type === "text") {
+    const div = document.createElement("div");
+    div.className = "box-text";
+    div.textContent = obj.text || "";
+    applyCommonStyles(div, obj);
+    return div;
+  } else if (obj.type === "img") {
+    const img = document.createElement("img");
+    img.className = "box-img";
+    img.src = obj.src || "";
+    applyCommonStyles(img, obj);
+    return img;
+  } else if (obj.type === "video") {
+    const video = document.createElement("video");
+    video.className = "box-video";
+    video.src = obj.src || "";
+    video.controls = true;
+    applyCommonStyles(video, obj);
+    return video;
+  }
+  return document.createTextNode("");
+}
+
+function renderPage(pageArray) {
+  const container = document.createElement("div");
+  pageArray.forEach(item => {
+    if (item.text) {
+      container.appendChild(renderText(item.text));
+    } else if (item.img) {
+      container.appendChild(renderImage(item.img));
+    } else if (item.video) {
+      container.appendChild(renderVideo(item.video));
+    } else if (item.button) {
+      container.appendChild(renderButton(item.button));
+    } else if (item.input) {
+      container.appendChild(renderInput(item.input));
+    } else if (item.url) {
+      container.appendChild(renderUrl(item.url));
+    } else if (item.box) {
+      container.appendChild(renderBox(item.box));
+    }
+  });
+  return container;
+}
+
+function showPage(index) {
+  if (index < 0 || index >= pages.length) return;
+  currentPageIndex = index;
+  appDiv.innerHTML = "";
+  const pageName = pages[currentPageIndex];
+  const pageContent = xappData.app.design[pageName];
+  appDiv.appendChild(renderPage(pageContent));
+}
+
+// أزرار التنقل
+prevBtn.onclick = () => {
+  if (currentPageIndex > 0) {
+    showPage(currentPageIndex - 1);
+  }
+};
+nextBtn.onclick = () => {
+  if (currentPageIndex < pages.length - 1) {
+    showPage(currentPageIndex + 1);
+  }
+};
+
+// عرض الصفحة الأولى عند التحميل
+showPage(currentPageIndex);
+</script>
+
+</body>
+</html>

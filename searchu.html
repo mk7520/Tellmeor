@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TellmeOrg | Search</title>
+    <link rel="stylesheet" href="settings.css" type="text/css" media="all" />
+    <style>
+        .search-bar {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar select {
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+            min-width: 140px;
+            cursor: pointer;
+        }
+
+        .chat-list {
+            padding: 10px;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-align: center;
+            cursor: pointer;
+            gap: 10px;
+        }
+
+        .chat-story {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #ff007f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            overflow: hidden;
+        }
+
+        .chat-story img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-bar" style="display:flex;align-items:center;gap:10px;padding:10px;background:#eee;">
+    <a href="chats.html">
+        <div class="search-icon">
+            <img src="./a/img/back.png" alt="Tellme" width="50px">
+        </div>
+    </a>
+    <button class="settings-button">search</button>
+    <a href="history.html">
+        <div class="search-icon">
+            <img src="./a/img/history.png" alt="history" width="50px">
+        </div>
+    </a>
+</header>
+
+<div class="search-bar">
+    <input id="searchInput" type="text" placeholder="🔍 ابحث عن الأشخاص..." />
+    <select id="searchType">
+        <option value="all">الكل</option>
+        <option value="chat">محادثة</option>
+        <option value="app">تطبيق</option>
+        <option value="channel">قناة</option>
+        <option value="audio">صوتي</option>
+        <option value="video">مرئي</option>
+    </select>
+</div>
+
+<div class="chat-list" id="resultsList">
+    <div class="chat-item">
+        
+    </div>
+</div>
+
+<script>
+    // بيانات تجريبية كمثال — يمكن استبدالها ببيانات حقيقية من سيرفر أو API
+    const users = [
+        { type: 'chat', username: ' MKHAL.me ', img: 'p.png' },
+        { type: 'app', username: ' MKHALApp ', img: 'p.png' },
+        { type: 'channel', username: ' MKHAL ', img: 'p.png' },
+        { type: 'audio', username: ' MKHALalAudio', img: 'p.png' },
+        { type: 'video', username: ' MKHALVideo', img: 'p.png' },
+        { type: 'chat', username: ' Kiwi.Inc', img: 'p.png' },
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchType = document.getElementById('searchType');
+    const resultsList = document.getElementById('resultsList');
+
+    // دالة لتحديث قائمة النتائج حسب البحث ونوع البحث
+    function updateResults() {
+        const query = searchInput.value.trim().toLowerCase();
+        const type = searchType.value;
+
+        // تصفية المستخدمين حسب النص والنوع
+        const filtered = users.filter(user => {
+            const matchesType = (type === 'all') || (user.type === type);
+            const matchesQuery = user.username.toLowerCase().includes(query);
+            return matchesType && matchesQuery;
+        });
+
+        // عرض النتائج
+        if (filtered.length === 0) {
+            resultsList.innerHTML = '<p>لا توجد نتائج مطابقة.</p>';
+            return;
+        }
+
+        resultsList.innerHTML = filtered.map(user => `
+            <div class="chat-item" onclick="alert('تم اختيار: ${user.username} (${user.type})')">
+                <div class="chat-story">
+                    <img src="${user.img}" alt="${user.username}" />
+                </div>
+                <div>${user.username}</div>
+            </div>
+        `).join('');
+    }
+
+    // حدث عند تغيير نص البحث أو نوع البحث
+    searchInput.addEventListener('input', updateResults);
+    searchType.addEventListener('change', updateResults);
+
+    // عرض جميع النتائج في البداية
+    updateResults();
+</script>
+
+</body>
+</html>

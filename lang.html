@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Choose Language - TellmeOrg</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    .lang-item:last-child {
+      border-bottom: none;
+    }
+
+    .lang-item input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #007bff;
+    }
+
+    .lang-label {
+      font-size: 16px;
+      color: #222;
+    }
+
+    .save-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🌐 Choose Your Language</h2>
+
+    <div class="lang-item">
+      <input type="radio" name="language" value="en" checked>
+      <span class="lang-label">English</span>
+    </div>
+
+    <div class="lang-item">
+      <input type="radio" name="language" value="ar">
+      <span class="lang-label">العربية</span>
+    </div>
+
+    <div class="lang-item">
+      <input type="radio" name="language" value="fr">
+      <span class="lang-label">Français</span>
+    </div>
+
+    <div class="lang-item">
+      <input type="radio" name="language" value="ru">
+      <span class="lang-label">Русский</span>
+    </div>
+
+    <div class="lang-item">
+      <input type="radio" name="language" value="de">
+      <span class="lang-label">Deutsch</span>
+    </div>
+
+    <button class="save-btn" onclick="saveLanguage()">Save Language</button>
+  </div>
+
+  <script>
+    function saveLanguage() {
+      const selected = document.querySelector('input[name="language"]:checked').value;
+      alert('Language saved: ' + selected);
+      // هنا يمكن تخزين اللغة في localStorage أو إرسالها إلى السيرفر
+    }
+  </script>
+
+</body>
+</html>

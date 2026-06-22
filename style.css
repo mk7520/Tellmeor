@@ -1,0 +1,107 @@
+/* إعادة تعيين أساسية وأنماط عامة */
+body {
+    font-family: sans-serif; /* اختر خطًا مناسبًا */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    direction: rtl; /* للتوافق مع اللغة العربية */
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #444;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block; /* لعرض العناصر بجانب بعضها */
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #555;
+}
+
+main {
+    max-width: 960px; /* تحديد عرض أقصى للمحتوى */
+    margin: 2rem auto; /* توسيط المحتوى وإضافة هوامش */
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee; /* فاصل بسيط بين الأقسام */
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+/* تنسيق مبدئي لمربع الكود */
+pre {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    overflow-x: auto; /* لإضافة شريط تمرير أفقي إذا كان الكود طويلاً */
+    direction: ltr; /* الكود عادةً يكتب من اليسار لليمين */
+    text-align: left;
+}
+
+code {
+    font-family: monospace; /* استخدام خط بعرض ثابت للكود */
+}
+
+/* تنسيق الأزرار */
+.button {
+    display: inline-block;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #4cae4c;
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+}

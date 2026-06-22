@@ -1,0 +1,324 @@
+/* === أساسيات وتنسيقات عامة === */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap'); /* استيراد خط Cairo كمثال */
+
+body {
+    font-family: 'Cairo', sans-serif; /* استخدام الخط المستورد */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl; /* تحديد الاتجاه من اليمين لليسار */
+    background-color: #fff;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px; /* أو العرض المناسب لتصميمك */
+    margin: 0 auto; /* توسيط المحتوى */
+    padding: 0 15px; /* هوامش جانبية */
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* ترث اللون من العنصر الأب */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* لمنع مسافات إضافية تحت الصور */
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit; /* استخدام نفس خط الصفحة */
+}
+
+/* === الهيدر (Header) === */
+header {
+    padding-top: 10px;
+}
+
+header nav.container {
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر */
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+header .logo img {
+    height: 40px; /* تعديل حسب حجم الشعار */
+}
+
+header .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* مسافة بين العناصر */
+}
+
+header .social-icons {
+    display: flex;
+    gap: 10px;
+}
+header .social-icons img {
+    height: 34px; /* حجم أيقونات التواصل */
+}
+
+
+header .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+header .nav-links a {
+    color: #555;
+    font-weight: bold;
+}
+header .nav-links a:hover {
+    color: #ff005e; /* لون عند المرور */
+}
+
+header .language-switcher button {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.header-border, .section-border, .footer-border {
+    height: 2px;
+    background-color: #eee; /* لون الخط الفاصل */
+}
+
+/* === قسم Hero === */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+    gap: 30px;
+}
+
+.hero-left {
+    flex-basis: 50%; /* يأخذ نصف العرض */
+    text-align: right;
+}
+.hero-left .hero-logo {
+    width: 80px; /* حجم الشعار */
+    margin-bottom: 15px;
+}
+.hero-left p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+.hero-left .cta-button {
+    background-color: #e50914; /* لون قريب من الصورة */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.hero-right {
+    flex-basis: 40%; /* يأخذ جزء من العرض */
+    
+}
+
+.info-box {
+    border: 1px solid #ddd;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-left: 4;
+}
+.info-box h4 {
+    margin-top: 0;
+    color: #e50914; /* لون العنوان */
+}
+
+/* === قسم أنظمة التشغيل (OS) === */
+.os-section {
+    padding: 30px 0;
+}
+.os-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* شبكة مرنة */
+    gap: 20px;
+    text-align: center;
+}
+
+.os-item {
+    border: 1px solid #ddd;
+    padding: 25px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: #fff;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* ظل خفيف */
+}
+
+.section-border {
+    margin: 20px auto; /* مسافة أعلى وأسفل الخط */
+    max-width: 1200px;
+}
+
+
+/* === قسم "ما الجديد" === */
+.whats-new {
+    padding: 40px 0;
+}
+
+.whats-new-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 30px;
+}
+
+.whats-new-item {
+    text-align: right;
+}
+
+.placeholder-box {
+    background-color: #000;
+    color: #00000000;
+    height: 150px; /* ارتفاع الصندوق الأسود */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    border-radius: 5px; /* حواف دائرية قليلاً */
+}
+
+.whats-new-item h4 {
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.whats-new-item p {
+    color: #666;
+}
+
+/* === قسم الميزات === */
+.features {
+    padding: 40px 0;
+    background-color: #f8f8f8; /* خلفية مختلفة قليلاً */
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    text-align: center; /* توسيط محتوى كل ميزة */
+}
+
+.feature-item img {
+    width: 100px; /* حجم أيقونة الميزة */
+    margin: 0 auto 15px auto; /* توسيط أفقي */
+}
+
+.feature-item p {
+    color: #555;
+    font-size: 1.12em;
+    line-height: 1.6;
+}
+
+/* === الفوتر (Footer) === */
+footer {
+    padding: 30px 0 0 0;
+    background-color: #fff;
+}
+
+.footer-content {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 30px;
+}
+
+.footer-text {
+    flex-basis: 60%;
+}
+.footer-text h4 {
+    color: #e50914;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.footer-text p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.footer-logo img {
+     width: 100px; /* حجم الشعار السفلي */
+}
+
+.footer-links ul {
+    display: flex;
+    justify-content: center; /* توسيط الروابط */
+    gap: 25px;
+    flex-wrap: wrap; /* للسماح بالالتفاف على شاشات أصغر */
+    padding: 20px 0;
+    border-top: 1px solid #eee; /* خط فاصل فوق الروابط */
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: #555;
+    font-weight: 500;
+}
+.footer-links a:hover {
+    color: #e50914;
+}
+
+.footer-border {
+    background-color: #e50914; /* لون الخط السفلي */
+    height: 4px;
+}
+
+/* === تنسيقات للشاشات الصغيرة (Responsive - مثال بسيط) === */
+@media (max-width: 768px) {
+    header nav.container, header .nav-left {
+        flex-direction: column; /* ترتيب العناصر عمودياً */
+        align-items: stretch; /* تمديد العناصر لملء العرض */
+        gap: 15px;
+    }
+    header .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    header .social-icons {
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-left, .hero-right {
+        flex-basis: 100%;
+        text-align: center;
+    }
+     .hero-left .hero-logo {
+         margin: 0 auto 15px auto; /* توسيط */
+     }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+     .footer-logo {
+         margin-top: 20px;
+     }
+}
+
+a {
+      color: #ff0049;
+}

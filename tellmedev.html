@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TellmeOrg</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">TellmeOrg</div>
+  <nav>
+    <a href="#about" data-translate="about"></a>
+    <a href="#features" data-translate="features"></a>
+    <a href="#download" data-translate="download"></a>
+  </nav>
+  <div class="controls">
+    <select id="language-switcher"></select>
+    <button id="theme-toggle">🌙</button>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <h2 data-translate="about_title"></h2>
+    <p data-translate="about_text"></p>
+  </section>
+
+  <section id="features">
+    <h2 data-translate="features_title"></h2>
+    <ul>
+      <li data-translate="feature1"></li>
+      <li data-translate="feature2"></li>
+      <li data-translate="feature3"></li>
+    </ul>
+  </section>
+
+  <section id="download">
+    <h2 data-translate="download_title"></h2>
+    <button data-translate="download_btn"></button>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 TellmeOrg</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="theme.js"></script>
+</body>
+</html>

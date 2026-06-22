@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TellmeOrg - Settings</title>
+  <link rel="stylesheet" href="Languages.css" />
+</head>
+<body>
+  <header class="top-bar">
+        <div>
+                    <a href="./settings.html">
+                          <img src="a/img/back.png" alt="back" width="50px">
+                    </a>
+              
+              
+              
+        </div>
+    <button class="settings-button">Languages</button>
+    <a href="searchsettings.html">
+           <div class="search-icon">
+      <img src="search.png" alt="Search" width="50px">    
+    </div>
+    </a>
+   
+  </header>
+
+  
+  <section class="section-list">
+        
+              <div class="row"><span>
+                    <input type="radio" name="" id="" value="" /> Arebic
+              </span></div>
+              
+              <div class="row"><span>
+                    <input type="radio" name="" id="" value="" /> English 
+              </span></div>
+              
+               <div class="row"><span>
+                    <input type="radio" name="" id="" value="" /> china
+              </span></div>
+              
+              <div class="row"><span>
+                    <input type="radio" name="" id="" value="" /> Russia
+              </span></div>
+  </section>
+
+ 
+  
+
+  <script src="settingss"></script>
+  <script>
+    function saveLanguage() {
+      const selected = document.querySelector('input[name="language"]:checked').value;
+      alert('Language saved: ' + selected);
+      // هنا يمكن تخزين اللغة في localStorage أو إرسالها إلى السيرفر
+    }
+  </script>
+</body>
+</html>
+      

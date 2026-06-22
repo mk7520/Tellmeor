@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Country Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    .dropdown {
+      position: relative;
+      max-width: 400px;
+    }
+    #countrySearch {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .dropdown-content {
+      position: absolute;
+      width: 100%;
+      background-color: white;
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      z-index: 10;
+    }
+    .dropdown-content div {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .dropdown-content div:hover {
+      background-color: #f0f0f0;
+    }
+    #selectedCode {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>اختر الدولة</h2>
+  <div class="dropdown">
+    <input type="text" id="countrySearch" placeholder="ابحث عن دولة..." oninput="filterCountries()" onclick="showDropdown()" />
+    <div id="countryList" class="dropdown-content"></div>
+  </div>
+  <div id="selectedCode"></div>
+
+  <script>
+    const countries = [
+      {{ name: "Saudi Arabia", code: "+966" }},
+      {{ name: "Egypt", code: "+20" }},
+      {{ name: "United Arab Emirates", code: "+971" }},
+      {{ name: "United States", code: "+1" }},
+      {{ name: "France", code: "+33" }},
+      {{ name: "Germany", code: "+49" }},
+      {{ name: "India", code: "+91" }},
+      {{ name: "Turkey", code: "+90" }},
+      {{ name: "United Kingdom", code: "+44" }},
+      {{ name: "Jordan", code: "+962" }},
+      {{ name: "Qatar", code: "+974" }},
+      {{ name: "Lebanon", code: "+961" }},
+      {{ name: "Morocco", code: "+212" }},
+      {{ name: "Kuwait", code: "+965" }},
+      {{ name: "Iraq", code: "+964" }},
+      {{ name: "Syria", code: "+963" }},
+      {{ name: "Algeria", code: "+213" }},
+      {{ name: "Tunisia", code: "+216" }},
+      {{ name: "Oman", code: "+968" }},
+      {{ name: "palestine", code: "+970"  }},
+      {{ name: "Bahrain", code: "+973" }}
+    ];
+
+    const countryListDiv = document.getElementById('countryList');
+    const searchInput = document.getElementById('countrySearch');
+    const selectedCode = document.getElementById('selectedCode');
+
+    function showDropdown() {
+      countryListDiv.style.display = 'block';
+      renderList(countries);
+    }
+
+    function filterCountries() {
+      const query = searchInput.value.toLowerCase();
+      const filtered = countries.filter(c =>
+        c.name.toLowerCase().includes(query) || c.code.includes(query)
+      );
+      renderList(filtered);
+    }
+
+    function renderList(list) {
+      countryListDiv.innerHTML = '';
+      list.forEach(c => {
+        const div = document.createElement('div');
+        div.textContent = `${c.name} (${c.code})`;
+        div.onclick = () => {
+          searchInput.value = c.name;
+          selectedCode.textContent = 'رمز الدولة: ' + c.code;
+          countryListDiv.style.display = 'none';
+        };
+        countryListDiv.appendChild(div);
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        countryListDiv.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
